@@ -30,6 +30,7 @@ dependencies:
   get:
   animated_splash_screen:
   persistent_bottom_nav_bar:
+  pin_code_fields: ^7.3.0
   flutter:
     sdk: flutter
 

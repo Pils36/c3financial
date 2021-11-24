@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
         splash: Image.asset('assets/logo/ccc_logo.png'),
         nextScreen: OnboardingScreen(),
         splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: mBackgroundColor,
       ),
     );
   }
