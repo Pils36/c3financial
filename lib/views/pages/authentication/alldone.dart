@@ -25,7 +25,7 @@ class AllDone extends StatelessWidget {
           child: Column(
             children: [
               const Image(
-                image: AssetImage('assets/icons/alldone.png'),
+                image: AssetImage('assets/icons/alldone.gif'),
                 width: 500,
                 height: 500,
                 fit: BoxFit.contain,

@@ -77,37 +77,43 @@ class _RecoveryCodeState extends State<RecoveryCode> {
                           style: bodyFont,
                         ),
                         const SizedBox(height: 56),
-                        PinCodeTextField(
-                          appContext: context,
-                          length: 4,
-                          obscureText: false,
-                          animationType: AnimationType.fade,
-                          pinTheme: PinTheme(
-                            shape: PinCodeFieldShape.box,
-                            borderRadius: BorderRadius.circular(5),
-                            fieldHeight: 69,
-                            fieldWidth: 69,
-                            activeFillColor: Colors.white,
-                            inactiveFillColor: mSwipeColor,
-                            inactiveColor: Colors.white,
-                            selectedColor: Colors.white,
-                            selectedFillColor: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: PinCodeTextField(
+                            appContext: context,
+                            keyboardType: TextInputType.number,
+                            length: 4,
+                            obscureText: true,
+                            obscuringCharacter: '●',
+                            animationType: AnimationType.fade,
+                            pinTheme: PinTheme(
+                              shape: PinCodeFieldShape.box,
+                              borderRadius: BorderRadius.circular(5),
+                              fieldHeight: 60,
+                              fieldWidth: 60,
+                              activeFillColor: Colors.white,
+                              inactiveFillColor: Colors.white,
+                              inactiveColor: Colors.white,
+                              selectedColor: Colors.white,
+                              selectedFillColor: Colors.white,
+                            ),
+                            animationDuration:
+                                const Duration(milliseconds: 300),
+                            backgroundColor: mLightGrey,
+                            enableActiveFill: true,
+                            onCompleted: (v) {
+                              showSnackBar('Success', "Verified your code $v");
+                            },
+                            onChanged: (value) {
+                              print(value);
+                            },
+                            beforeTextPaste: (text) {
+                              print("Allowing to paste $text");
+                              //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
+                              //but you can show anything you want here, like your pop up saying wrong paste format or etc
+                              return true;
+                            },
                           ),
-                          animationDuration: const Duration(milliseconds: 300),
-                          backgroundColor: mLightGrey,
-                          enableActiveFill: true,
-                          onCompleted: (v) {
-                            showSnackBar('Success', "Verified your code $v");
-                          },
-                          onChanged: (value) {
-                            print(value);
-                          },
-                          beforeTextPaste: (text) {
-                            print("Allowing to paste $text");
-                            //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                            //but you can show anything you want here, like your pop up saying wrong paste format or etc
-                            return true;
-                          },
                         ),
                       ],
                     ),

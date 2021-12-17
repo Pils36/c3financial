@@ -17,6 +17,7 @@ class OnboardingController extends GetxController {
     if (isLastPage) {
       // Goto Sign Up Page
       Get.to(() => const SignIn());
+      Get.offAll(const SignIn());
     } else {
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
     }
@@ -24,15 +25,15 @@ class OnboardingController extends GetxController {
 
   List<OnboardingInfo> onboardingPages = [
     OnboardingInfo(
-        "assets/images/onboard/giving_from_app.png",
+        "assets/images/onboard/giving_from_app.jpg",
         "Give from your App",
         "Now you can pay tithe and seeds from your app, all you need is your card."),
     OnboardingInfo(
-        "assets/images/onboard/pay_anywhere.png",
+        "assets/images/onboard/pay_anywhere.jpg",
         "Pay Tithe anywhere",
         "Now you can pay your tithe anywhere and anytime, stop waiting till you spend it."),
     OnboardingInfo(
-        "assets/images/onboard/things_have_changed.png",
+        "assets/images/onboard/things_have_changed.jpg",
         "Things have changed",
         "We are here to fulfill destinies, this is a medium to help you in the world of today."),
   ];
