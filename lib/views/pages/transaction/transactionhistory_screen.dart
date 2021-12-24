@@ -14,6 +14,8 @@ class TransactionScreen extends StatelessWidget {
   getAppBar() {
     return AppBar(
       title: const Text("Transactions"),
+      backgroundColor: Colors.black,
+      elevation: 0,
     );
   }
 

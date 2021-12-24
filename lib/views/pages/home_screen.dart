@@ -18,15 +18,16 @@ class HomeScreen extends StatelessWidget {
     var size = MediaQuery.of(context).size.width;
 
     return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
+      physics: const ClampingScrollPhysics(),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             alignment: AlignmentDirectional.topStart,
             children: [
               Container(
                 width: size,
-                height: 300,
+                height: 150,
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(
@@ -84,131 +85,208 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(20.0),
-                        width: 327,
-                        height: 172,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 120, left: 20),
+                child: Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.all(20.0),
+                    width: 350,
+                    height: 172,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Total Tithe Paid",
+                                style: TextStyle(
+                                    color: Color(0xFFC4C4C4),
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 14)),
+                            Text("100,000.84",
+                                style: TextStyle(
+                                    color: Color(0xFF000000),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18)),
+                          ],
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        const SizedBox(height: 10),
+                        const Divider(height: 1, thickness: 1),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text("Total Tithe Paid",
-                                    style: TextStyle(
-                                        color: Color(0xFFC4C4C4),
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14)),
-                                Text("100,000.84",
-                                    style: TextStyle(
-                                        color: Color(0xFF000000),
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 18)),
+                            Column(
+                              children: [
+                                Container(
+                                    child:
+                                        Image.asset('assets/icons/tithe.png'),
+                                    width: 46,
+                                    height: 46,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFE9E9E9),
+                                      shape: BoxShape.circle,
+                                    )),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Tithe",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
+                                ),
                               ],
                             ),
-                            const SizedBox(height: 10),
-                            const Divider(height: 1, thickness: 1),
-                            const SizedBox(height: 30),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                        child: Image.asset(
-                                            'assets/icons/sendicon.png'),
-                                        width: 46,
-                                        height: 46,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
-                                          shape: BoxShape.circle,
-                                        )),
-                                    const SizedBox(height: 10),
-                                    const Text(
-                                      "Message",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                                Container(
+                                    child: Image.asset('assets/icons/seed.png'),
+                                    width: 46,
+                                    height: 46,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFE9E9E9),
+                                      shape: BoxShape.circle,
+                                    )),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Partnership",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                        child: Image.asset(
-                                            'assets/icons/tithe.png'),
-                                        width: 46,
-                                        height: 46,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
-                                          shape: BoxShape.circle,
-                                        )),
-                                    const SizedBox(height: 10),
-                                    const Text(
-                                      "Tithe",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                    child: Image.asset(
+                                        'assets/icons/sendicon.png'),
+                                    width: 46,
+                                    height: 46,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFE9E9E9),
+                                      shape: BoxShape.circle,
+                                    )),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "Seed",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                                Column(
-                                  children: [
-                                    Container(
-                                        child: Image.asset(
-                                            'assets/icons/seed.png'),
-                                        width: 46,
-                                        height: 46,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
-                                          shape: BoxShape.circle,
-                                        )),
-                                    const SizedBox(height: 10),
-                                    const Text(
-                                      "Seed",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  children: [
-                                    Container(
-                                        child: Image.asset(
-                                            'assets/icons/history.png'),
-                                        width: 46,
-                                        height: 46,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xFFF9F9F9),
-                                          shape: BoxShape.circle,
-                                        )),
-                                    const SizedBox(height: 10),
-                                    const Text(
-                                      "History",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                  ],
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                    child:
+                                        Image.asset('assets/icons/history.png'),
+                                    width: 46,
+                                    height: 46,
+                                    decoration: const BoxDecoration(
+                                      color: Color(0xFFE9E9E9),
+                                      shape: BoxShape.circle,
+                                    )),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  "History",
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ],
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ],
           ),
+          const SizedBox(height: 15),
+          Container(
+            padding: const EdgeInsets.only(left: 25),
+            child: Column(
+              children: const [
+                Text('Recent Transactions',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xFFC4C4C4))),
+              ],
+            ),
+          ),
+          getRecentTransactions('Tithe', '2 days ago',
+              'assets/icons/titheblack.png', '5,0000.00'),
+          getRecentTransactions('Partnership', '2 days ago',
+              'assets/icons/seedblack.png', '5,0000.00'),
+          getRecentTransactions('Tithe', '2 days ago',
+              'assets/icons/titheblack.png', '5,0000.00'),
+          getRecentTransactions('Partnership', '2 days ago',
+              'assets/icons/seedblack.png', '5,0000.00'),
+          getRecentTransactions('Tithe', '2 days ago',
+              'assets/icons/titheblack.png', '5,0000.00'),
+          const SizedBox(
+            height: 20,
+          ),
         ],
+      ),
+    );
+  }
+
+  getRecentTransactions(
+      String title, String period, String image, String amount) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 20,
+        top: 5,
+        bottom: 5,
+      ),
+      child: Container(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        width: 350,
+        height: 80,
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFFFFF),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Image(
+                  image: AssetImage(image),
+                  width: 36,
+                  height: 36,
+                ),
+                const SizedBox(width: 10),
+                Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(title,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 16)),
+                      const Text('2 days ago',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w400, fontSize: 12)),
+                    ]),
+              ],
+            ),
+            Text(amount,
+                style:
+                    const TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
+          ],
+        ),
       ),
     );
   }

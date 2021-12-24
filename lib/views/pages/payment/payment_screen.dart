@@ -14,7 +14,8 @@ class PaymentScreen extends StatelessWidget {
   getAppBar() {
     return AppBar(
       title: const Text("Payment"),
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.black,
+      elevation: 0,
     );
   }
 

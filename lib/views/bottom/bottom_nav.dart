@@ -1,10 +1,9 @@
 import 'package:c3financial/constants/colors.dart';
 import 'package:c3financial/views/pages/home_screen.dart';
 import 'package:c3financial/views/pages/payment/payment_screen.dart';
-import 'package:c3financial/views/pages/profile/profile_screen.dart';
+import 'package:c3financial/views/pages/settings/settings_screen.dart';
 import 'package:c3financial/views/pages/transaction/transactionhistory_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class BottomNav extends StatefulWidget {
@@ -16,13 +15,11 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   late PersistentTabController _controller;
-  late bool _hideNavBar;
 
   @override
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
-    _hideNavBar = false;
   }
 
   @override
@@ -32,12 +29,12 @@ class _BottomNavState extends State<BottomNav> {
       controller: _controller,
       screens: _buildScreens(),
       items: _navBarsItems(),
-      backgroundColor: mBackgroundColor,
+      backgroundColor: const Color(0xFFFFFFFF),
       resizeToAvoidBottomInset: true,
       hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: mBackgroundColor,
+        colorBehindNavBar: mSwipeColor,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
@@ -52,42 +49,42 @@ class _BottomNavState extends State<BottomNav> {
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style3,
+      navBarStyle: NavBarStyle.style12,
     );
   }
 
   List<Widget> _buildScreens() {
     return [
       const HomeScreen(),
-      const TransactionScreen(),
       const PaymentScreen(),
-      const ProfileScreen()
+      const TransactionScreen(),
+      const SettingsScreen()
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.home_filled),
+        icon: const ImageIcon(AssetImage('assets/icons/home.png')),
         title: ("Dashboard"),
-        activeColorPrimary: Colors.redAccent,
+        activeColorPrimary: mSwipeColor,
         inactiveColorPrimary: mMediumGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.drive_file_rename_outline),
-        title: ("Transactions"),
-        activeColorPrimary: Colors.blue,
-        inactiveColorPrimary: mMediumGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(Icons.credit_card),
+        icon: const ImageIcon(AssetImage('assets/icons/payment.png')),
         title: ("Payment"),
         activeColorPrimary: Colors.green,
         inactiveColorPrimary: mMediumGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.verified_user_outlined),
-        title: ("Profile"),
+        icon: const ImageIcon(AssetImage('assets/icons/transactionrecord.png')),
+        title: ("Transactions"),
+        activeColorPrimary: Colors.blue,
+        inactiveColorPrimary: mMediumGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const ImageIcon(AssetImage('assets/icons/menu.png')),
+        title: ("Settings"),
         activeColorPrimary: Colors.purple,
         inactiveColorPrimary: mMediumGrey,
       ),
