@@ -24,19 +24,37 @@ class PaymentScreen extends StatelessWidget {
 
   getBody() {
     return SingleChildScrollView(
-      physics: const ClampingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Container(
         padding: const EdgeInsets.only(left: 20, right: 20),
-        margin: const EdgeInsets.only(top: 100, bottom: 100),
+        margin: const EdgeInsets.only(top: 20, bottom: 100),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text("Select Payment Type",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey,
+                      )),
+                  Text("Please choose payment type"),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 myColumCard('assets/icons/givetithe.png', 'Give your Tithe',
-                    const GiveTithe()),
+                    const GiveTithe(), 'Leviticus 27:30'),
                 myColumCard('assets/icons/partnership.png', 'Be a Partner',
-                    const GiveTithe()),
+                    const GiveTithe(), '1 Corinthians 3:9'),
               ],
             ),
             const SizedBox(height: 20),
@@ -44,9 +62,9 @@ class PaymentScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 myColumCard('assets/icons/sowseed.png', 'Sow a seed',
-                    const GiveTithe()),
+                    const GiveTithe(), 'Galatians 6:7'),
                 myColumCard('assets/icons/setman.png', 'Give to set man',
-                    const GiveTithe()),
+                    const GiveTithe(), 'Hebrews 13:17'),
               ],
             ),
           ],
@@ -55,7 +73,7 @@ class PaymentScreen extends StatelessWidget {
     );
   }
 
-  myColumCard(String image, String title, Widget widget) {
+  myColumCard(String image, String title, Widget widget, String subText) {
     return Stack(
       children: [
         GestureDetector(
@@ -68,7 +86,7 @@ class PaymentScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             child: Padding(
-              padding: const EdgeInsets.only(top: 30, bottom: 30),
+              padding: const EdgeInsets.only(top: 30),
               child: Column(
                 children: [
                   Image(
@@ -80,6 +98,10 @@ class PaymentScreen extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(fontWeight: FontWeight.w500),
+                  ),
+                  Text(
+                    subText,
+                    style: const TextStyle(fontSize: 12, color: Colors.red),
                   ),
                 ],
               ),

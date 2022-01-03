@@ -211,7 +211,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
           Container(
             padding: const EdgeInsets.only(left: 25),
             child: Column(
@@ -220,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFFC4C4C4))),
+                        color: Colors.blueGrey)),
               ],
             ),
           ),
