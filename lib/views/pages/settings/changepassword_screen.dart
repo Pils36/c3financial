@@ -2,30 +2,18 @@ import 'package:c3financial/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ChangePassword extends StatefulWidget {
+  const ChangePassword({Key? key}) : super(key: key);
 
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  _ChangePasswordState createState() => _ChangePasswordState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ChangePasswordState extends State<ChangePassword> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController familyConnectController = TextEditingController();
-
-  final items = [
-    'Holiness Family',
-    'Peace Family',
-    'Faith Family',
-    'Loyalty Family',
-    'Excellence Family',
-    'Power Family',
-    'Joy Family'
-  ];
-
-  String? value;
+  TextEditingController oldpasswordController = TextEditingController();
+  TextEditingController newpasswordController = TextEditingController();
+  TextEditingController confirmpasswordController = TextEditingController();
 
   bool isButtonActive = false;
 
@@ -39,29 +27,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // Run async call
 
-    print(nameController.text);
-    print(familyConnectController.text);
-    print(emailController.text);
+    print(oldpasswordController.text);
+    print(newpasswordController.text);
+    print(confirmpasswordController.text);
 
-    showSnackBar(
-        'Great!', 'Your name is updated as ' + nameController.text, true);
+    showSnackBar('Great!', 'Password successfully changed', true);
   }
 
   @override
   void initState() {
     super.initState();
 
-    nameController.addListener(() {
-      final isButtonActive = nameController.text.isNotEmpty &&
-          familyConnectController.text.isNotEmpty;
+    oldpasswordController.addListener(() {
+      final isButtonActive = oldpasswordController.text.isNotEmpty &&
+          newpasswordController.text.isNotEmpty &&
+          confirmpasswordController.text.isNotEmpty;
 
       setState(() {
         this.isButtonActive = isButtonActive;
       });
     });
-    familyConnectController.addListener(() {
-      final isButtonActive = familyConnectController.text.isNotEmpty &&
-          nameController.text.isNotEmpty;
+    newpasswordController.addListener(() {
+      final isButtonActive = newpasswordController.text.isNotEmpty &&
+          oldpasswordController.text.isNotEmpty &&
+          confirmpasswordController.text.isNotEmpty;
+      setState(() {
+        this.isButtonActive = isButtonActive;
+      });
+    });
+    confirmpasswordController.addListener(() {
+      final isButtonActive = confirmpasswordController.text.isNotEmpty &&
+          oldpasswordController.text.isNotEmpty &&
+          newpasswordController.text.isNotEmpty;
       setState(() {
         this.isButtonActive = isButtonActive;
       });
@@ -70,8 +67,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void dispose() {
-    nameController.dispose();
-    familyConnectController.dispose();
+    oldpasswordController.dispose();
+    newpasswordController.dispose();
+    confirmpasswordController.dispose();
     super.dispose();
   }
 
@@ -103,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Image.asset('assets/icons/arrow_back.png',
                         width: 30, height: 30),
                   ),
-                  const Text('Profile',
+                  const Text('Change Password',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                   const Text(''),
@@ -126,56 +124,76 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Edit your Profile',
+                          'Password',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 60),
                         TextFormField(
-                          controller: nameController,
+                          controller: oldpasswordController,
+                          obscureText: true,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Color(0xFFFFFFFF),
-                            labelText: 'Your Name',
+                            labelText: 'Current Password',
                             labelStyle: TextStyle(fontSize: 14),
                             floatingLabelStyle:
                                 TextStyle(color: Color(0xFF00A9B7)),
                             contentPadding: EdgeInsets.all(5),
+                            prefixIcon:
+                                ImageIcon(AssetImage("assets/icons/lock.png")),
                           ),
                         ),
                         const SizedBox(height: 80),
                         TextFormField(
-                          initialValue: 'topeawofisayo@gmail.com',
-                          readOnly: true,
-                          onSaved: (value) {
-                            emailController.text = value!;
-                          },
+                          controller: newpasswordController,
+                          obscureText: true,
                           decoration: const InputDecoration(
                             filled: true,
                             fillColor: Color(0xFFFFFFFF),
-                            hintText: 'topeawofisayo@gmail.com',
+                            labelText: 'New Password',
                             labelStyle: TextStyle(fontSize: 14),
+                            floatingLabelStyle:
+                                TextStyle(color: Color(0xFF00A9B7)),
                             contentPadding: EdgeInsets.all(5),
+                            prefixIcon:
+                                ImageIcon(AssetImage("assets/icons/lock.png")),
                           ),
-                          keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter a valid password';
+                            } else if (value.length < 6) {
+                              return 'Password must be at least 6 character';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(height: 80),
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                          child: DropdownButton<String>(
-                            hint: const Text('Family you belong to'),
-                            isExpanded: true,
-                            iconSize: 24,
-                            icon: const ImageIcon(
-                                AssetImage('assets/icons/arrow_down.png')),
-                            value: value,
-                            items: items.map(buildMenuItem).toList(),
-                            elevation: 0,
-                            onChanged: (value) => setState(() {
-                              this.value = value;
-                              familyConnectController.text = value!;
-                            }),
+                        TextFormField(
+                          controller: confirmpasswordController,
+                          obscureText: true,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFFFFFFFF),
+                            labelText: 'Confirm Password',
+                            labelStyle: TextStyle(fontSize: 14),
+                            floatingLabelStyle:
+                                TextStyle(color: Color(0xFF00A9B7)),
+                            contentPadding: EdgeInsets.all(5),
+                            prefixIcon:
+                                ImageIcon(AssetImage("assets/icons/lock.png")),
                           ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Confirm your password';
+                            } else if (value.length < 6) {
+                              return 'Password must be at least 6 character';
+                            } else if (confirmpasswordController.text !=
+                                newpasswordController.text) {
+                              return 'Password does not match the new password';
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(height: 80),
                         Container(

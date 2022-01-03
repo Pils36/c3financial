@@ -3,7 +3,6 @@ import 'package:c3financial/constants/styles.dart';
 import 'package:c3financial/views/bottom/bottom_nav.dart';
 import 'package:c3financial/views/pages/authentication/forgot_password.dart';
 import 'package:c3financial/views/pages/authentication/signup.dart';
-// import 'package:c3financial/views/pages/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/utils.dart';
@@ -36,8 +35,6 @@ class _SignInState extends State<SignIn> {
 
     Get.to(() => const BottomNav());
     Get.offAll(const BottomNav());
-    // Get.to(() => const HomeScreen());
-    // Get.offAll(const HomeScreen());
   }
 
   @override
