@@ -12,7 +12,6 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: getBody(),
-      backgroundColor: const Color(0xFFE5E5E5),
     );
   }
 

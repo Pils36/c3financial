@@ -13,7 +13,6 @@ class _GiveTitheState extends State<GiveTithe> {
     return Scaffold(
       appBar: getAppBar(),
       body: getBody(),
-      backgroundColor: const Color(0xFFE5E5E5),
     );
   }
 

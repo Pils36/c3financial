@@ -13,7 +13,6 @@ class _TitheRecordState extends State<TitheRecord> {
     return Scaffold(
       appBar: getAppBar(),
       body: getBody(),
-      backgroundColor: const Color(0xFFE5E5E5),
     );
   }
 
@@ -96,25 +95,25 @@ class _TitheRecordState extends State<TitheRecord> {
             const SizedBox(height: 20),
             myTransactionHistory("04", "Jan, 2022", "January tithe",
                 "Fund received by C3", "04-Jan-2022 02:03am", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("10", "Dec, 2021", "December tithe",
                 "Fund received by C3", "10-Dec-2021 03:43am", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("08", "Nov, 2021", "November tithe",
                 "Fund received by C3", "08-Nov-2021 02:03am", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("09", "Oct, 2021", "October tithe",
                 "Fund received by C3", "09-Oct-2021 02:03am", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("04", "Sept, 2021", "September tithe",
                 "Fund received by C3", "04-Sept-2021 02:03am", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("14", "Aug, 2021", "August tithe",
                 "Fund received by C3", "14-Aug-2021 04:03pm", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             myTransactionHistory("05", "July, 2021", "July tithe",
                 "Fund received by C3", "05-July-2021 05:30pm", "+50,000"),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
           ],
         ),
       ),
@@ -135,64 +134,72 @@ class _TitheRecordState extends State<TitheRecord> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Container(
-                    height: 80,
-                    width: 5,
-                    color: Colors.lightGreen,
-                    margin: const EdgeInsets.only(right: 5),
-                  ),
-                  Container(
-                    height: 70,
-                    width: 70,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE5E5E5),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          day,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 25),
-                        ),
-                        Text(monthYear),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        receiver,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        dateTime,
-                      ),
-                    ],
-                  ),
-                ],
+              Container(
+                height: 80,
+                width: 5,
+                color: Colors.lightGreen,
+                margin: const EdgeInsets.only(right: 5),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10),
-                child: Text(
-                  amount,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      color: Colors.green,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600),
+              Expanded(
+                flex: 3,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 70,
+                      width: 70,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE5E5E5),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            day,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 25),
+                          ),
+                          Text(monthYear),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            receiver,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            dateTime,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Text(
+                    amount,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        color: Colors.green,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ),
             ],

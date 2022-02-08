@@ -1,5 +1,4 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:c3financial/constants/colors.dart';
 import 'package:c3financial/views/starting/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.size,
       theme: ThemeData(
         fontFamily: "DM Sans",
+        scaffoldBackgroundColor: const Color(0xFFEDF4FC),
       ),
       home: AnimatedSplashScreen(
         splash: Image.asset('assets/logo/ccc_logo.png'),

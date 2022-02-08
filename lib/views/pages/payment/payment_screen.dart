@@ -8,7 +8,6 @@ class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE5E5E5),
       appBar: getAppBar(),
       body: getBody(),
     );
